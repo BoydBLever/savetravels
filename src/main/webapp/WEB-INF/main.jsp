@@ -8,6 +8,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<br>
+<br>
 <title>Save Travels</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -38,29 +40,28 @@
 <br>
 <br>
 <form:form action="/expenses/new" method="POST" modelAttribute="newExpense">
-  <p>
-        <form:label path="expenseName">Expense Name:</form:label>
+  <div class="form-group mx-sm-3 mb-2">
+        <form:label for="exampleExpenseName" path="expenseName">Expense Name:</form:label>
         <form:errors path="expenseName"/>
-        <form:input path="expenseName"/>
-    </p>
-     <p>
-        <form:label path="amount">Amount:($)</form:label>
+        <form:input class="form-control" placeholder="Room & Board" path="expenseName"/>
+     </div>
+     <div class="form-group mx-sm-3 mb-2">
+        <form:label path="amount">Amount:</form:label>
         <form:errors path="amount"/>
-        <form:input type="number" path="amount"/>
-    </p>
-     <p>
+        <form:input type="number" class="form-control" placeholder="$250" path="amount"/>
+    </div>
+     <div class="form-group mx-sm-3 mb-2">
         <form:label path="vendor">Vendor:</form:label>
         <form:errors path="vendor"/>
-        <form:input path="vendor"/>
-    </p>
-     <p>
+        <form:input class="form-control" placeholder="Holiday Inn Express" path="vendor"/>
+    </div>
+     <div class="form-group mx-sm-3 mb-2"">
         <form:label path="description">Description:</form:label>
         <form:errors path="description"/>
-        <form:textarea path="description"></form:textarea>
-    </p>
-    <!-- <button type="submit">Add expense</button> -->
-    <button class="btn btn-primary" type="submit">Add expense!</button>
+        <form:textarea class="form-control" placeholder="Weekend staycation at an affordable hotel!" path="description"></form:textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Add expense</button>
 </form:form>
-<br>
+
 </body>
 </html>
