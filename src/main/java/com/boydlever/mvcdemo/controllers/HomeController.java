@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.boydlever.mvcdemo.models.Expense;
 import com.boydlever.mvcdemo.services.ExpenseService;
@@ -28,6 +30,21 @@ public class HomeController {
 		model.addAttribute("expenseList", allExpenses);
 		return "main.jsp";
 	}
+	//Heidi's recommendation for adding validations to Add Expense
+	@PostMapping("/expenses")
+	public String processMainCreateForm(
+			@Valid @ModelAttribute("newExpense") Expense expense,
+			BindingResult result, Model model){
+				if (result.hasErrors()) {
+					//if validation fails
+					List<Expense>allExpenses = expenseService.allExpenses();
+					model.addAttribute("expenseList", allExpenses);
+					return "main.jsp";
+				}else {
+					expenseService.addExpense(expense);
+				}
+				return "redirect:/expenses";
+			}
 	//3
 	@GetMapping("/expenses/{id}")
 	public String oneExpense(@PathVariable("id")Long id, Model model) {
@@ -42,6 +59,7 @@ public class HomeController {
 	return "newExpenseForm.jsp";
 	}
 	
+	
 	//5. Process the form
 	@PostMapping("/expenses/new")
 	public String processCreateForm(
@@ -55,7 +73,6 @@ public class HomeController {
 				}
 				return "redirect:/expenses";
 			}
-	
 	//6. EDIT form
 	//Display the form
 	@GetMapping("/expenses/edit/{id}")
@@ -66,7 +83,7 @@ public class HomeController {
 	}
 	
 	//7. process the form
-	@PostMapping("/expenses/edit/{id}")
+	@PutMapping("/expenses/edit/{id}")
 	public String processUpdate(@Valid @ModelAttribute("expense") Expense expense,
 			BindingResult result) {
 		System.out.println("hello");
@@ -77,7 +94,7 @@ public class HomeController {
 			return "redirect:/expenses/{id}";
 		}
 	}
-	//8. DELETE
+	//8. DELETE --> localhost:8080/expenses/delete/3 --> security concern
 	@GetMapping("/expenses/delete/{id}")
 	public String deleteExpense(@PathVariable("id") Long id) {
 		expenseService.deleteExpense(id);

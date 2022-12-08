@@ -12,7 +12,7 @@
 <body>
 <h1>Edit Expense ${expense.id}</h1>
 <form:form action="/expenses/edit/${expense.id}" method="POST" modelAttribute="expense">
-  <input type="hidden" value="PUT">
+  <input type="hidden" name="_method" value="PUT">
   <p>
         <form:label path="expenseName">Expense Name:</form:label>
         <form:errors path="expenseName"/>

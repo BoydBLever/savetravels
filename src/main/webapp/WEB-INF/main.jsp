@@ -29,7 +29,7 @@
 		<c:forEach var="eachExpense" items="${expenseList }">
 			<tr>
 				<td> <a href="/expenses/${eachExpense.id }">${eachExpense.expenseName}</a></td>
-				<td> <c:out value="${eachExpense.amount }"/></td>
+				<td> $<c:out value="${eachExpense.amount }"/></td>
 				<td> <c:out value="${eachExpense.vendor }"/></td>
 				<td> <a href="/expenses/edit/${eachExpense.id }">Edit</a></td>
 				<td> <a href="/expenses/delete/${eachExpense.id }">Delete</a></td>
@@ -39,7 +39,7 @@
 </table>
 <br>
 <br>
-<form:form action="/expenses/new" method="POST" modelAttribute="newExpense">
+<form:form action="/expenses" method="POST" modelAttribute="newExpense">
   <div class="form-group mx-sm-3 mb-2">
         <form:label for="exampleExpenseName" path="expenseName">Expense Name:</form:label>
         <form:errors path="expenseName"/>
@@ -58,10 +58,9 @@
      <div class="form-group mx-sm-3 mb-2"">
         <form:label path="description">Description:</form:label>
         <form:errors path="description"/>
-        <form:textarea class="form-control" placeholder="Weekend staycation at an affordable hotel!" path="description"></form:textarea>
+        <form:textarea class="form-control" placeholder="Weekend getaway to a cozy hotel." path="description"></form:textarea>
     </div>
     <button class="btn btn-primary" type="submit">Add expense</button>
 </form:form>
-
 </body>
 </html>
