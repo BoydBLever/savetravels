@@ -95,7 +95,7 @@ public class HomeController {
 		}
 	}
 	//8. DELETE --> localhost:8080/expenses/delete/3 --> security concern
-	@GetMapping("/expenses/delete/{id}")
+	@DeleteMapping("/expenses/delete/{id}")
 	public String deleteExpense(@PathVariable("id") Long id) {
 		expenseService.deleteExpense(id);
 		return "redirect:/expenses";

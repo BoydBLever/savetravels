@@ -28,11 +28,26 @@
 	<tbody>
 		<c:forEach var="eachExpense" items="${expenseList }">
 			<tr>
-				<td> <a href="/expenses/${eachExpense.id }">${eachExpense.expenseName}</a></td>
-				<td> $<c:out value="${eachExpense.amount }"/></td>
-				<td> <c:out value="${eachExpense.vendor }"/></td>
-				<td> <a href="/expenses/edit/${eachExpense.id }">Edit</a></td>
-				<td> <a href="/expenses/delete/${eachExpense.id }">Delete</a></td>
+				<td> 
+				<a href="/expenses/${eachExpense.id }">${eachExpense.expenseName}</a>
+				</td>
+				
+				<td> 
+				$<c:out value="${eachExpense.amount }"/>
+				</td>
+				
+				<td> 
+				<c:out value="${eachExpense.vendor }"/>
+				</td>
+				
+				<td> 
+				<a class="btn btn-primary" href="/expenses/edit/${eachExpense.id }">Edit</a>
+				
+				<form action="/expenses/delete/${eachExpense.id}" method="post">
+				<input type="hidden" name="_method" value="delete" />
+				<input type="submit" value="Delete" class="btn btn-danger">
+				</form>
+				</td>
 			</tr>
 		</c:forEach>
 	</tbody>
