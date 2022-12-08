@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>Save Travels</title>
 </head>
 <body>
 <h1>Expense Details</h1>
